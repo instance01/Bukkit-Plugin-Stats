@@ -1,0 +1,9 @@
+*.bak
+*.rar
+*.zip
+*.png
+*.jpg
+config.php
+BukkitSnippets/config.php
+_notes/
+Thumbs.db
