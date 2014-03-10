@@ -1,6 +1,6 @@
 <html>
 <head>
-<link href="../bukkitsnippets/pluginstatus/css/bootstrap.css" rel="stylesheet">
+<link href="css/bootstrap.css" rel="stylesheet">
 </head>
 
 <body>
@@ -49,7 +49,7 @@ foreach ($plugins as &$plugin) {
 ?>
 
 <br>
-<script src="../bukkitsnippets/pluginstatus/js/bootstrap.js"></script>
+<script src="js/bootstrap.js"></script>
 </body>
 
 </html>
