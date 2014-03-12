@@ -47,7 +47,7 @@ function buildPlugin($name, $data){
 		$f .= substr($data, $i___ + 30, strpos($data, '</a>', $i___ + 30) - ($i___ + 30).'<br>');
 	}
 	if($icomment !== false){
-		$f .= 'Last Comment: '.substr($data, $icomment + 21, strpos($data, '</div>', $icomment + 21) - $icomment + 21);
+		$f .= '<div class="well">Last Comment: '.substr($data, $icomment + 21, strpos($data, '</div>', $icomment + 21) - $icomment + 21).'</div>';
 	}
 
 	$f .= '</div>';
