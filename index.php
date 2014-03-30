@@ -5,7 +5,7 @@
 
 <body>
 <?php
-$plugins = array(0 => "colormatch", 1 => "confirm-kill", 2 => "dragon-escape", 3 => "minigames-party", 4 => "skin-statue-builder", 5 => "horse-racing-plus", 6 => "sea-battle", 7 => "snake-challenge", 8 => "escape-mob");
+$plugins = array(0 => "colormatch", 1 => "confirm-kill", 2 => "dragon-escape", 3 => "minigames-party", 4 => "skin-statue-builder", 5 => "horse-racing-plus", 6 => "sea-battle", 7 => "snake-minigame", 8 => "escape-mob");
 
 function connect($url){
 	$ch = curl_init ($url);
