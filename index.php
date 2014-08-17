@@ -5,7 +5,7 @@
 
 <body>
 <?php
-$plugins = array("instances-minigamesapi", "flyingcars-minigame", "warlock-minigame", "trapdoorspleef", "bowbash", "mglib-snake-challenge", "mglib-open-skywars", "mggungame", "mglib-conquer", "colormatch", "confirm-kill", "dragon-escape", "minigames-party", "skin-statue-builder", "horse-racing-plus", "sea-battle", "snake-minigame", "escape-mob");
+$plugins = array("instances-minigamesapi", "mgarcade", "flyingcars-minigame", "warlock-minigame", "trapdoorspleef", "bowbash", "mglib-snake-challenge", "mglib-open-skywars", "mggungame", "mglib-conquer", "colormatch", "confirm-kill", "dragon-escape", "minigames-party", "skin-statue-builder", "horse-racing-plus", "sea-battle", "snake-minigame", "escape-mob");
 //$plugins = array(0 => "colormatch", 1 => "confirm-kill", 2 => "dragon-escape", 3 => "minigames-party", 4 => "skin-statue-builder", 5 => "horse-racing-plus", 6 => "sea-battle", 7 => "snake-minigame", 8 => "escape-mob");
 
 function connect($url){
@@ -36,6 +36,7 @@ function buildPlugin($name, $data){
 	$i_ = strpos($data, 'data-value="');
 	$i__ = strpos($data, 'class="project-stage project-stage');
 	$i___ = strpos($data, 'class="project-default-image');
+	$ilatestfile = strpos($data, 'file-type');
 	$icomment = strpos($data, 'class="comment-body"');
 	
 	if($i_ !== false){
@@ -43,6 +44,10 @@ function buildPlugin($name, $data){
 	}
 	if($i__ !== false){
 		$f .= 'Stage: '.substr ($data, $i__+38, strpos($data, '</span>', $i__+38) - ($i__ + 38)).'<br>';
+	}
+	if($ilatestfile !== false){
+		$ahref = strpos($data, 'href=', $ilatestfile) - 3;
+		$f .= 'Latest approved file: '.substr ($data, $ahref, strpos($data, '</a>', $ahref) + 4 - $ahref).'<br>';
 	}
 	if($i___ !== false){
 		$f .= substr($data, $i___ + 30, strpos($data, '</a>', $i___ + 30) - ($i___ + 30).'<br>');
