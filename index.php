@@ -1,10 +1,25 @@
 <html>
 <head>
-<link href="css/bootstrap.css" rel="stylesheet">
+<link rel="stylesheet" type="text/css" href="s/semantic.min.css">
+<style>
+body{font-family: "Consolas", Times, serif;}
+</style>
 </head>
 
 <body>
-<?php
+<table class="ui basic table">
+  <thead>
+    <tr>
+      <th>Image</th>
+      <th>Project</th>
+      <th>Downloads</th>
+      <th>Stage</th>
+      <th>Latest approved File</th>
+      <th>Latest comment</th>
+    </tr>
+  </thead>
+  <tbody>
+    <?php
 $plugins = array("instances-minigamesapi", "mgarcade", "flyingcars-minigame", "warlock-minigame", "trapdoorspleef", "bowbash", "mglib-snake-challenge", "mglib-open-skywars", "mggungame", "mglib-conquer", "colormatch", "confirm-kill", "dragon-escape", "minigames-party", "skin-statue-builder", "horse-racing-plus", "sea-battle", "snake-minigame", "escape-mob");
 //$plugins = array(0 => "colormatch", 1 => "confirm-kill", 2 => "dragon-escape", 3 => "minigames-party", 4 => "skin-statue-builder", 5 => "horse-racing-plus", 6 => "sea-battle", 7 => "snake-minigame", 8 => "escape-mob");
 
@@ -16,14 +31,11 @@ function connect($url){
 
 $pre = 'http://dev.bukkit.org/bukkit-plugins/';
 
-//print_r();
-
 function buildPlugin($name, $data){
-	$f = '<div class="well">';
-	$f .= 'Info for '.$name.':<br>';
-	
+	$f = '<tr>';
+
 	if (strpos($data,'class="warning-message"') !== false && strpos($data,'This project is awaiting approval.') !== false) {
-		$f .= 'The project is not approved yet. <br></div>';
+		$f .= 'The project is not approved yet. </tr>';
 		echo($f);
 		return;
 	}
@@ -33,30 +45,50 @@ function buildPlugin($name, $data){
 		return;
 	}*/
 	
-	$i_ = strpos($data, 'data-value="');
-	$i__ = strpos($data, 'class="project-stage project-stage');
-	$i___ = strpos($data, 'class="project-default-image');
+	$idownloads = strpos($data, 'data-value="');
+	$istage = strpos($data, 'class="project-stage project-stage');
+	$iimage = strpos($data, 'class="project-default-image');
 	$ilatestfile = strpos($data, 'file-type');
 	$icomment = strpos($data, 'class="comment-body"');
 	
-	if($i_ !== false){
-		$f .= 'Downloads: '.substr ($data, $i_+12, strpos($data, '">', $i_+12) - ($i_+12)).'<br>';
+	// image
+	if($iimage !== false){
+		$f .= '<td>'.substr($data, $iimage + 30, strpos($data, '</a>', $iimage + 30) - ($iimage + 30).'</td>');
 	}
-	if($i__ !== false){
-		$f .= 'Stage: '.substr ($data, $i__+38, strpos($data, '</span>', $i__+38) - ($i__ + 38)).'<br>';
+	
+	// name
+	$f .= '<td>'.$name.'</td>';
+	
+	// downloads
+	if($idownloads !== false){
+		$f .= '<td>'.substr ($data, $idownloads + 12, strpos($data, '">', $idownloads + 12) - ($idownloads + 12)).'</td>';
+	} else {
+		$f .= '<td></td>';
 	}
+	
+	// stage
+	if($istage !== false){
+		$f .= '<td>'.substr ($data, $istage + 38, strpos($data, '</span>', $istage + 38) - ($istage + 38)).'</td>';
+	} else {
+		$f .= '<td></td>';
+	}
+	
+	// latest file
 	if($ilatestfile !== false){
 		$ahref = strpos($data, 'href=', $ilatestfile) - 3;
-		$f .= 'Latest approved file: '.substr ($data, $ahref, strpos($data, '</a>', $ahref) + 4 - $ahref).'<br>';
+		$f .= '<td>'.substr ($data, $ahref, strpos($data, '</a>', $ahref) + 4 - $ahref).'</td>';
+	} else {
+		$f .= '<td></td>';
 	}
-	if($i___ !== false){
-		$f .= substr($data, $i___ + 30, strpos($data, '</a>', $i___ + 30) - ($i___ + 30).'<br>');
-	}
+	
+	// latest comment
 	if($icomment !== false){
-		$f .= '<div class="well">Last Comment: '.substr($data, $icomment + 21, strpos($data, '</div>', $icomment + 21) - $icomment + 21).'</div>';
+		$f .= '<td>'.substr($data, $icomment + 21, strpos($data, '</div>', $icomment + 21) - $icomment + 21).'</td>';
+	} else {
+		$f .= '<td></td>';
 	}
 
-	$f .= '</div>';
+	$f .= '</tr>';
 	echo($f);
 }
 
@@ -67,9 +99,8 @@ foreach ($plugins as &$plugin) {
 }
 
 ?>
-
+  </tbody>
+</table>
 <br>
-<script src="js/bootstrap.js"></script>
 </body>
-
 </html>

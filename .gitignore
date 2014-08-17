@@ -3,6 +3,7 @@
 *.zip
 *.png
 *.jpg
+s/
 config.php
 BukkitSnippets/config.php
 _notes/
