@@ -4,11 +4,11 @@ Bukkit-Plugin-Stats
 This will show current statistics of all your plugins in one place.
 
 
-See an example [here](http://instancelabs.eu5.org/pluginstatus/).
+See an example [here](http://www.instancedev.com/bukkitstats/).
 
 
 
-It will currently show Downloads, Stage, License and the main picture, but I'll add more things like the last two comments etc. soon.
+It will currently show Downloads, Stage, the main picture and the last comment. Will also inform you if a project is not approved yet.
 
 
 
