@@ -20,7 +20,7 @@ body{font-family: "Consolas", Times, serif;}
   </thead>
   <tbody>
     <?php
-$plugins = array("instances-minigamesapi", "mgarcade", "flyingcars-minigame", "warlock-minigame", "trapdoorspleef", "bowbash", "mglib-snake-challenge", "mglib-open-skywars", "mggungame", "mglib-conquer", "colormatch", "confirm-kill", "dragon-escape", "minigames-party", "skin-statue-builder", "horse-racing-plus", "sea-battle", "snake-minigame", "escape-mob");
+$plugins = array("instances-minigamesapi", "mgarcade", "minigameslib-splegg", "minigameslib-seabattle", "minigameslib-mobescape", "flyingcars-minigame", "warlock-minigame", "trapdoorspleef", "bowbash", "mglib-snake-challenge", "mglib-open-skywars", "mggungame", "mglib-conquer", "colormatch", "confirm-kill", "dragon-escape", "minigames-party", "skin-statue-builder", "horse-racing-plus", "sea-battle", "snake-minigame", "escape-mob");
 //$plugins = array(0 => "colormatch", 1 => "confirm-kill", 2 => "dragon-escape", 3 => "minigames-party", 4 => "skin-statue-builder", 5 => "horse-racing-plus", 6 => "sea-battle", 7 => "snake-minigame", 8 => "escape-mob");
 
 function connect($url){
